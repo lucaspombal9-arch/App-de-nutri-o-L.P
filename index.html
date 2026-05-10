@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Alimentação Semanal — LP · Lateral Direito · 17 Anos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #080808;
+  --surface: #111111;
+  --surface2: #1a1a1a;
+  --border: #222222;
+  --border2: #2e2e2e;
+  --text: #e8e8e8;
+  --muted: #666;
+  --muted2: #888;
+  /* macros */
+  --carb: #f59e0b;
+  --prot: #3b82f6;
+  --fat: #10b981;
+  --water: #06b6d4;
+  /* days */
+  --seg: #00C851;
+  --ter: #FFD600;
+  --qua: #FF6F00;
+  --qui: #F44336;
+  --sex: #D4001A;
+  --sab: #E040FB;
+  --dom: #555e7a;
+  /* intensity */
+  --low: #4CAF50;
+  --mid: #FF9800;
+  --high: #F44336;
+  --max: #E040FB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+/* ===== MASTHEAD ===== */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  border-bottom: 2px solid var(--border2);
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.masthead-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 7vw, 64px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.h1-a { color: var(--text); }
+.h1-b { color: var(--carb); }
+.h1-c { color: var(--muted); font-weight: 400; font-size: 0.45em; letter-spacing: 3px; display: block; margin-top: 8px; }
+
+.stats-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.stat-pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  padding: 4px 10px;
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* ===== MACRO LEGEND ===== */
+.macro-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.macro-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.macro-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+
+.macro-card.carb::before { background: var(--carb); }
+.macro-card.prot::before { background: var(--prot); }
+.macro-card.fat::before { background: var(--fat); }
+.macro-card.agua::before { background: var(--water); }
+
+.mc-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.mc-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.macro-card.carb .mc-val { color: var(--carb); }
+.macro-card.prot .mc-val { color: var(--prot); }
+.macro-card.fat .mc-val { color: var(--fat); }
+.macro-card.agua .mc-val { color: var(--water); }
+
+.mc-desc {
+  font-size: 10px;
+  color: var(--muted2);
+  line-height: 1.5;
+}
+
+/* ===== SECTION HEAD ===== */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 16px;
+}
+
+.section-head h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
+
+.sn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 3px 7px;
+  border: 1px solid var(--border);
+  letter-spacing: 2px;
+}
+
+/* ===== PRINCÍPIOS BOX ===== */
+.principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.prin-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px;
+}
+
+.prin-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--border2);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.prin-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--carb);
+  margin-bottom: 4px;
+}
+
+.prin-desc {
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 1.6;
+}
+
+/* ===== DAY CARDS ===== */
+.day {
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+  background: var(--surface);
+}
+
+.day-bar {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  user-select: none;
+  min-height: 68px;
+}
+
+.day-accent { width: 5px; flex-shrink: 0; }
+
+.day-content {
+  flex: 1;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.day-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.day-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--border2);
+  min-width: 56px;
+  flex-shrink: 0;
+  letter-spacing: -1px;
+}
+
+.day-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.day-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.day-sub {
+  font-size: 10px;
+  color: var(--muted2);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.day-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.kcal-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.int-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid;
+}
+
+.int-low { color: var(--low); border-color: var(--low); }
+.int-mid { color: var(--mid); border-color: var(--mid); }
+.int-high { color: var(--high); border-color: var(--high); }
+.int-max { color: var(--max); border-color: var(--max); }
+.int-rest { color: var(--dom); border-color: var(--dom); }
+
+.day-arrow {
+  color: var(--muted);
+  font-size: 16px;
+  transition: transform 0.25s;
+}
+
+.day.open .day-arrow { transform: rotate(180deg); }
+
+.day-body {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 0 0 20px;
+}
+
+.day.open .day-body { display: block; }
+
+/* ===== MEALS ===== */
+.meal {
+  border-bottom: 1px solid var(--border);
+}
+
+.meal:last-child { border-bottom: none; }
+
+.meal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px 8px;
+}
+
+.meal-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  min-width: 52px;
+}
+
+.meal-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex: 1;
+}
+
+.meal-kcal {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.meal-body { padding: 0 20px 14px; }
+
+.food-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.food-table tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.food-table tr:last-child { border-bottom: none; }
+
+.food-table td {
+  padding: 6px 4px;
+  vertical-align: top;
+}
+
+.food-name {
+  font-weight: 600;
+  font-size: 13px;
+  padding-right: 12px;
+  min-width: 160px;
+}
+
+.food-qty {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--carb);
+  white-space: nowrap;
+  padding-right: 12px;
+}
+
+.food-why {
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 1.5;
+}
+
+.meal-note {
+  margin-top: 8px;
+  background: var(--surface2);
+  border-left: 3px solid var(--border2);
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--muted2);
+  font-style: italic;
+}
+
+/* day colors for accents */
+.day.seg .day-accent { background: var(--seg); }
+.day.ter .day-accent { background: var(--ter); }
+.day.qua .day-accent { background: var(--qua); }
+.day.qui .day-accent { background: var(--qui); }
+.day.sex .day-accent { background: var(--sex); }
+.day.sab .day-accent { background: var(--sab); }
+.day.dom .day-accent { background: var(--dom); }
+
+.day.seg .day-name { color: var(--seg); }
+.day.seg .day-num { color: var(--seg); }
+.day.seg .kcal-badge { color: var(--seg); border-color: var(--seg); }
+.day.ter .day-name { color: var(--ter); }
+.day.ter .day-num { color: var(--ter); }
+.day.ter .kcal-badge { color: var(--ter); border-color: var(--ter); }
+.day.qua .day-name { color: var(--qua); }
+.day.qua .day-num { color: var(--qua); }
+.day.qua .kcal-badge { color: var(--qua); border-color: var(--qua); }
+.day.qui .day-name { color: var(--qui); }
+.day.qui .day-num { color: var(--qui); }
+.day.qui .kcal-badge { color: var(--qui); border-color: var(--qui); }
+.day.sex .day-name { color: var(--sex); }
+.day.sex .day-num { color: var(--sex); }
+.day.sex .kcal-badge { color: var(--sex); border-color: var(--sex); }
+.day.sab .day-name { color: var(--sab); }
+.day.sab .day-num { color: var(--sab); }
+.day.sab .kcal-badge { color: var(--sab); border-color: var(--sab); }
+.day.dom .day-name { color: var(--dom); }
+.day.dom .day-num { color: var(--dom); }
+.day.dom .kcal-badge { color: var(--dom); border-color: var(--dom); }
+
+.meal-time.seg { color: var(--seg); }
+.meal-time.ter { color: var(--ter); }
+.meal-time.qua { color: var(--qua); }
+.meal-time.qui { color: var(--qui); }
+.meal-time.sex { color: var(--sex); }
+.meal-time.sab { color: var(--sab); }
+.meal-time.dom { color: var(--dom); }
+
+/* ===== MACROS DAILY ROW ===== */
+.macro-row {
+  display: flex;
+  gap: 0;
+  margin: 0 20px 0;
+  border: 1px solid var(--border);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.macro-cell {
+  flex: 1;
+  padding: 8px 12px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+
+.macro-cell:last-child { border-right: none; }
+
+.mc-mini-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.mc-mini-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.mc-mini-val.carb { color: var(--carb); }
+.mc-mini-val.prot { color: var(--prot); }
+.mc-mini-val.fat { color: var(--fat); }
+.mc-mini-val.kcal { color: var(--text); }
+
+/* ===== HIGHLIGHT BOX ===== */
+.highlight-box {
+  background: rgba(245,158,11,0.05);
+  border: 1px solid rgba(245,158,11,0.2);
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+
+.highlight-box p { font-size: 13px; line-height: 1.8; }
+.highlight-box strong { color: var(--carb); }
+
+/* ===== ALERT ===== */
+.alert {
+  background: rgba(248,113,113,0.05);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-left: 3px solid var(--high);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.7;
+}
+
+.alert strong { color: var(--high); }
+
+/* ===== SUPLEMENTAÇÃO ===== */
+.supl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.supl-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px;
+}
+
+.supl-icon { font-size: 22px; margin-bottom: 6px; }
+
+.supl-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--prot);
+  margin-bottom: 4px;
+}
+
+.supl-dose {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--carb);
+  margin-bottom: 6px;
+}
+
+.supl-why {
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 1.6;
+}
+
+/* ===== COMPRA TABLE ===== */
+.compra-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+.compra-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border2);
+}
+
+.compra-table td {
+  padding: 8px 10px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.compra-table tr:last-child td { border-bottom: none; }
+
+.compra-table td:first-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.compra-table td:nth-child(2) {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--carb);
+}
+
+/* ===== FOOTER ===== */
+.footer-bar {
+  margin-top: 60px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+/* ===== TABS ===== */
+.tab-row {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.tab.active { color: var(--text); border-color: var(--carb); }
+.tab:hover { color: var(--muted2); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.obs-box {
+  margin: 0 20px 16px;
+  background: var(--surface2);
+  border-left: 3px solid var(--border2);
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--muted2);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .masthead { grid-template-columns: 1fr; }
+  .stats-col { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+  .macro-bar { grid-template-columns: repeat(2, 1fr); }
+  .day-num { font-size: 26px; min-width: 48px; }
+  .day-name { font-size: 15px; }
+  .int-badge { display: none; }
+  .food-why { display: none; }
+  .macro-cell { padding: 6px 4px; }
+  .day-content { padding: 10px 12px; gap: 8px; }
+  .meal-header { flex-wrap: wrap; gap: 4px; }
+  .meal-kcal { margin-left: auto; }
+  .compra-table td:last-child { display: none; }
+}
+</style>
+<meta name="theme-color" content="#2d5016">
+<meta name="background-color" content="#080808">
+<meta name="application-name" content="Plano LP">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Plano LP">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
+<link rel="manifest" href="manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('sw.js').then(function(reg) {
+        console.log('SW registered:', reg.scope);
+      }).catch(function(err) {
+        console.log('SW registration failed:', err);
+      });
+    });
+  }
+</script>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div>
+    <div class="masthead-tag">🍽️ Nutrição esportiva · LP · Lateral direito · 17 anos</div>
+    <h1>
+      <div class="h1-a">PLANO DE</div>
+      <div class="h1-b">ALIMENTAÇÃO</div>
+      <span class="h1-c">7 dias · Baseado em nutrição esportiva de alto nível · Alinhado ao plano global</span>
+    </h1>
+  </div>
+  <div class="stats-col">
+    <span class="stat-pill">3.000–3.400 KCAL/DIA TREINO</span>
+    <span class="stat-pill">2.400–2.600 KCAL DESCANSO</span>
+    <span class="stat-pill">6 REFEIÇÕES / DIA</span>
+    <span class="stat-pill">2,5–3L ÁGUA / DIA</span>
+  </div>
+</div>
+
+<!-- MACRO OVERVIEW -->
+<div class="macro-bar">
+  <div class="macro-card carb">
+    <div class="mc-label">Carboidrato</div>
+    <div class="mc-val">55–60%</div>
+    <div class="mc-desc">Principal combustível do sprint. Depleção de glicogênio = lateral que some no 2º tempo.</div>
+  </div>
+  <div class="macro-card prot">
+    <div class="mc-label">Proteína</div>
+    <div class="mc-val">25–30%</div>
+    <div class="mc-desc">Reconstrução muscular + crescimento. Aos 17 anos, meta: 1,8–2g por kg de peso corporal.</div>
+  </div>
+  <div class="macro-card fat">
+    <div class="mc-label">Gordura boa</div>
+    <div class="mc-val">15–20%</div>
+    <div class="mc-desc">Hormônios, absorção de vitaminas, saúde articular. Imprescindível para desenvolvimento.</div>
+  </div>
+  <div class="macro-card agua">
+    <div class="mc-label">Hidratação</div>
+    <div class="mc-val">2,5–3L</div>
+    <div class="mc-desc">2% de desidratação = queda no tempo de reação. Urina clara = bem hidratado.</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-row">
+  <div class="tab active" onclick="switchTab('semana', this)">Plano Semanal</div>
+  <div class="tab" onclick="switchTab('principios', this)">Princípios</div>
+  <div class="tab" onclick="switchTab('suplementos', this)">Suplementos</div>
+  <div class="tab" onclick="switchTab('compras', this)">Lista de Compras</div>
+</div>
+
+<!-- ======== TAB: SEMANA ======== -->
+<div class="tab-panel active" id="tab-semana">
+
+<div class="alert">
+  <strong>Regra base do plano:</strong> Toda refeição pré-treino (café da manhã) deve ser feita <strong>60–90 minutos antes</strong> do início do treino. Janela pós-treino de 30 minutos é inegociável para recuperação muscular. Não treines em jejum — lateral direito faz 40–60 sprints por jogo.
+</div>
+
+<!-- ===== SEGUNDA ===== -->
+<div class="day seg open" id="day-seg">
+  <div class="day-bar" onclick="toggleDay('day-seg')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">SEG</div>
+        <div class="day-text">
+          <div class="day-name">Segunda-feira</div>
+          <div class="day-sub">Fundamentos técnicos + resistência aeróbia · Moderada</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~3.100 KCAL</span>
+        <span class="int-badge int-mid">Moderada</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">420g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">145g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">70g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">3.100</div></div>
+    </div>
+
+    <!-- Refeição 1 -->
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time seg">06:30</div>
+        <div class="meal-name">☀️ Café da manhã — Pré-treino</div>
+        <div class="meal-kcal">~650 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Aveia em flocos</td><td class="food-qty">80g</td><td class="food-why">Carboidrato de digestão moderada — energia estável durante o treino técnico. Não pica o açúcar no meio do treino.</td></tr>
+          <tr><td class="food-name">Banana prata</td><td class="food-qty">2 unidades</td><td class="food-why">Potássio + carboidrato rápido. Previne câimbras e entrega energia inicial.</td></tr>
+          <tr><td class="food-name">Ovos mexidos</td><td class="food-qty">3 ovos</td><td class="food-why">Proteína completa + gordura saudável. Base de crescimento muscular para o dia.</td></tr>
+          <tr><td class="food-name">Leite integral ou soja</td><td class="food-qty">200ml</td><td class="food-why">Proteína de caseína + cálcio. Essencial para densidade óssea aos 17 anos.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">500ml</td><td class="food-why">Reidratação após o sono. Nunca treines desidratado.</td></tr>
+        </table>
+        <div class="meal-note">💡 Segunda começa o ciclo. Aveia + banana antes do treino é a combinação padrão de atletas de resistência porque sustenta energia por 90 minutos sem pico e queda de açúcar.</div>
+      </div>
+    </div>
+
+    <!-- Refeição 2 -->
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time seg">09:45–10:00</div>
+        <div class="meal-name">⚡ Pós-treino imediato</div>
+        <div class="meal-kcal">~400 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Banana</td><td class="food-qty">1 unidade</td><td class="food-why">Carboidrato simples imediato — repõe glicogênio muscular depleto pelo treino.</td></tr>
+          <tr><td class="food-name">Ovos cozidos</td><td class="food-qty">3 ovos</td><td class="food-why">Leucina dos ovos ativa a síntese proteica muscular — a janela de 30 min é real.</td></tr>
+          <tr><td class="food-name">Pão integral</td><td class="food-qty">2 fatias</td><td class="food-why">Complementa a reposição de carboidrato. O músculo precisa de glicose antes de aceitar proteína.</td></tr>
+          <tr><td class="food-name">Água ou água de coco</td><td class="food-qty">400ml</td><td class="food-why">Água de coco repõe sódio e potássio perdidos pelo suor.</td></tr>
+        </table>
+        <div class="meal-note">⚠️ Janela de 30 minutos. Não esperes chegar em casa. Leva os ovos cozidos na bolsa se precisar.</div>
+      </div>
+    </div>
+
+    <!-- Refeição 3 -->
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time seg">12:00</div>
+        <div class="meal-name">🍽️ Almoço — Refeição principal</div>
+        <div class="meal-kcal">~900 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz branco + feijão</td><td class="food-qty">200g cozido + 150g</td><td class="food-why">Combinação de proteína vegetal completa + carboidrato de baixo IG. Base da alimentação do atleta.</td></tr>
+          <tr><td class="food-name">Frango grelhado (peito)</td><td class="food-qty">180g</td><td class="food-why">Proteína magra de alta biodisponibilidade. 45g de proteína pura por porção.</td></tr>
+          <tr><td class="food-name">Couve ou brócolis refogados</td><td class="food-qty">100g</td><td class="food-why">Ferro + magnésio + vitamina K. Deficiência de ferro destrói a resistência aeróbia.</td></tr>
+          <tr><td class="food-name">Azeite de oliva extra virgem</td><td class="food-qty">1 colher sopa</td><td class="food-why">Gordura anti-inflamatória. Ômega-9 reduz inflamação muscular pós-treino.</td></tr>
+          <tr><td class="food-name">Suco natural (laranja ou maracujá)</td><td class="food-qty">200ml</td><td class="food-why">Vitamina C potencializa a absorção do ferro da couve. Combinação intencionalmente estratégica.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Refeição 4 -->
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time seg">15:30</div>
+        <div class="meal-name">🫐 Lanche da tarde</div>
+        <div class="meal-kcal">~350 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Batata-doce cozida</td><td class="food-qty">150g</td><td class="food-why">Carboidrato de baixo índice glicêmico + vitamina A + antioxidantes. Ideal para manutenção de energia.</td></tr>
+          <tr><td class="food-name">Amendoim ou castanha de caju</td><td class="food-qty">30g</td><td class="food-why">Gordura boa + proteína + magnésio. Magnésio é crítico para contração muscular e qualidade do sono.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">500ml</td><td class="food-why">Meta contínua de hidratação.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Refeição 5 -->
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time seg">19:30</div>
+        <div class="meal-name">🌙 Jantar — Recuperação e crescimento</div>
+        <div class="meal-kcal">~700 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz integral ou macarrão</td><td class="food-qty">150g cozido</td><td class="food-why">Carboidrato de digestão lenta — mantém energia estável durante o sono para a síntese proteica.</td></tr>
+          <tr><td class="food-name">Peixe grelhado (atum, sardinha, tilápia)</td><td class="food-qty">180g</td><td class="food-why">Proteína + ômega-3. Ômega-3 reduz marcadores inflamatórios e melhora a qualidade do sono.</td></tr>
+          <tr><td class="food-name">Salada (tomate, pepino, cenoura)</td><td class="food-qty">livre</td><td class="food-why">Micronutrientes, fibras e antioxidantes. Não corta carboidrato no jantar — o corpo precisa durante o sono.</td></tr>
+          <tr><td class="food-name">Azeite na salada</td><td class="food-qty">1 colher</td><td class="food-why">Anti-inflamatório. Fundamental em dias de treino.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Refeição 6 -->
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time seg">21:30</div>
+        <div class="meal-name">🥛 Ceia leve — 30 min antes de dormir</div>
+        <div class="meal-kcal">~200 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Iogurte natural (ou copo de leite)</td><td class="food-qty">200ml</td><td class="food-why">Caseína: proteína de digestão lenta que alimenta o músculo por até 7 horas durante o sono. CR7 usa isso.</td></tr>
+          <tr><td class="food-name">Mel</td><td class="food-qty">1 colher de chá</td><td class="food-why">Pequena dose de carboidrato sinaliza ao fígado para manter glicose estável durante o sono longo.</td></tr>
+        </table>
+        <div class="meal-note">💡 Iogurte com caseína antes de dormir é respaldado por estudos de nutrição esportiva. O músculo cresce durante o sono — se não tiver aminoácidos disponíveis, o crescimento não acontece.</div>
+      </div>
+    </div>
+
+    <div class="obs-box">Segunda = fundamentos técnicos + 30 min de corrida. Volume calórico moderado. O foco é qualidade dos macros, não quantidade máxima. Aveia pré-treino e caseína pré-sono são os diferenciais do dia.</div>
+  </div>
+</div>
+
+<!-- ===== TERÇA ===== -->
+<div class="day ter" id="day-ter">
+  <div class="day-bar" onclick="toggleDay('day-ter')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">TER</div>
+        <div class="day-text">
+          <div class="day-name">Terça-feira</div>
+          <div class="day-sub">Força funcional + drible · Alta intensidade · Mais carboidrato</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~3.300 KCAL</span>
+        <span class="int-badge int-high">Alta</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">460g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">155g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">75g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">3.300</div></div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time ter">06:30</div>
+        <div class="meal-name">☀️ Café da manhã — Pré-treino de força</div>
+        <div class="meal-kcal">~750 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Pão integral</td><td class="food-qty">3 fatias</td><td class="food-why">Carboidrato + fibra. Digestão moderada — energia sustentada para 45 min de treino de força.</td></tr>
+          <tr><td class="food-name">Ovos mexidos</td><td class="food-qty">3 ovos</td><td class="food-why">Leucina pré-treino de força aumenta a síntese proteica durante e após a sessão.</td></tr>
+          <tr><td class="food-name">Manteiga de amendoim</td><td class="food-qty">2 colheres</td><td class="food-why">Gordura + proteína extra. Força muscular precisa de gordura boa disponível.</td></tr>
+          <tr><td class="food-name">Banana</td><td class="food-qty">2 unidades</td><td class="food-why">Potássio contra câimbras + carboidrato rápido de backup.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">500ml</td><td class="food-why">Hidratação pré-treino. Músculos desidratados perdem 10–15% da força.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time ter">09:45</div>
+        <div class="meal-name">⚡ Pós-treino — Recuperação muscular</div>
+        <div class="meal-kcal">~450 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz ou macarrão</td><td class="food-qty">150g cozido</td><td class="food-why">Dia de força = maior depleção muscular. Mais carboidrato na janela pós-treino que nos outros dias.</td></tr>
+          <tr><td class="food-name">Frango ou atum (lata)</td><td class="food-qty">120g</td><td class="food-why">Proteína imediata. Atum em lata é prático para levar na bolsa do treino.</td></tr>
+          <tr><td class="food-name">Banana</td><td class="food-qty">1 unidade</td><td class="food-why">Fechamento da janela anabólica com carboidrato simples.</td></tr>
+        </table>
+        <div class="meal-note">⚠️ Terça é dia de força. A janela pós-treino precisa ser mais calórica do que nos outros dias. Músculo danificado pelo agachamento e avanço precisa de mais aminoácidos disponíveis.</div>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time ter">12:00</div>
+        <div class="meal-name">🍽️ Almoço</div>
+        <div class="meal-kcal">~950 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz branco + feijão</td><td class="food-qty">220g + 150g</td><td class="food-why">Volume maior de carboidrato — dia de alta intensidade. Reposição completa de glicogênio.</td></tr>
+          <tr><td class="food-name">Carne vermelha magra (patinho, alcatra)</td><td class="food-qty">200g</td><td class="food-why">Creatina natural + ferro heme + zinco. Carne vermelha 2–3x por semana é essencial para atletas em crescimento.</td></tr>
+          <tr><td class="food-name">Inhame ou cará cozido</td><td class="food-qty">100g</td><td class="food-why">Carboidrato extra de baixo IG + vitaminas do complexo B. Energia muscular de qualidade.</td></tr>
+          <tr><td class="food-name">Legumes variados</td><td class="food-qty">100g</td><td class="food-why">Antioxidantes que combatem o estresse oxidativo do treino de força.</td></tr>
+          <tr><td class="food-name">Suco de laranja natural</td><td class="food-qty">200ml</td><td class="food-why">Vitamina C potencializa absorção do ferro da carne. Estratégico, não casual.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time ter">15:30</div>
+        <div class="meal-name">🫐 Lanche da tarde</div>
+        <div class="meal-kcal">~400 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Pão integral com atum</td><td class="food-qty">2 fatias + 80g</td><td class="food-why">Proteína + carboidrato na tarde de dia pesado. Sustenta até o jantar sem queda de energia.</td></tr>
+          <tr><td class="food-name">1 fruta (manga ou mamão)</td><td class="food-qty">1 porção</td><td class="food-why">Vitaminas A e C. Antioxidantes para reparação celular pós-treino de força.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">500ml</td><td class="food-why">Continuidade da hidratação.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time ter">19:30</div>
+        <div class="meal-name">🌙 Jantar — Alto em proteína</div>
+        <div class="meal-kcal">~750 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Frango ou peixe grelhado</td><td class="food-qty">200g</td><td class="food-why">Proteína alta no jantar de dia de força. O músculo precisa de aminoácidos disponíveis durante as 8h de sono.</td></tr>
+          <tr><td class="food-name">Batata-doce cozida</td><td class="food-qty">200g</td><td class="food-why">Carboidrato de baixo IG no jantar = energia constante durante a síntese proteica noturna.</td></tr>
+          <tr><td class="food-name">Salada completa com azeite</td><td class="food-qty">livre + 1 colher</td><td class="food-why">Micronutrientes + gordura anti-inflamatória. Terça de força exige máxima recuperação.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time ter">21:30</div>
+        <div class="meal-name">🥛 Ceia</div>
+        <div class="meal-kcal">~200 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Iogurte natural + chia</td><td class="food-qty">200ml + 1 colher</td><td class="food-why">Caseína pré-sono + ômega-3 da chia. Chia também tem cálcio — fundamental para crescimento ósseo.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="obs-box">Terça = maior demanda calórica da semana junto com quinta. Força funcional consome mais glicogênio muscular do que treino técnico. Proteína e carboidrato precisam ser maiores hoje.</div>
+  </div>
+</div>
+
+<!-- ===== QUARTA ===== -->
+<div class="day qua" id="day-qua">
+  <div class="day-bar" onclick="toggleDay('day-qua')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">QUA</div>
+        <div class="day-text">
+          <div class="day-name">Quarta-feira</div>
+          <div class="day-sub">Recuperação ativa + rondo · Leve · Foco anti-inflamatório</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~2.800 KCAL</span>
+        <span class="int-badge int-low">Leve</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">370g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">140g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">80g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">2.800</div></div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qua">07:00</div>
+        <div class="meal-name">☀️ Café da manhã — Dia leve</div>
+        <div class="meal-kcal">~600 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Tapioca</td><td class="food-qty">2 unidades médias</td><td class="food-why">Carboidrato de fácil digestão. Quarta leve não precisa de aveia pesada.</td></tr>
+          <tr><td class="food-name">Ovo mexido + queijo fresco</td><td class="food-qty">2 ovos + 30g</td><td class="food-why">Proteína leve no café de dia de recuperação. Suficiente para manter síntese proteica.</td></tr>
+          <tr><td class="food-name">Abacate</td><td class="food-qty">metade</td><td class="food-why">Gordura boa + potássio + vitamina E. Anti-inflamatório natural — perfeito para dia de recuperação.</td></tr>
+          <tr><td class="food-name">Suco de laranja natural</td><td class="food-qty">200ml</td><td class="food-why">Vitamina C ao acordar aumenta absorção de ferro e reforça o sistema imune.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qua">10:00</div>
+        <div class="meal-name">⚡ Pós-treino leve</div>
+        <div class="meal-kcal">~300 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Banana + amendoim</td><td class="food-qty">2 bananas + 20g</td><td class="food-why">Quarta é leve — a janela pós-treino não precisa ser grande. Reposição mínima suficiente.</td></tr>
+          <tr><td class="food-name">Água de coco</td><td class="food-qty">300ml</td><td class="food-why">Eletrólitos naturais. Hidratação de recuperação.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qua">12:00</div>
+        <div class="meal-name">🍽️ Almoço — Anti-inflamatório</div>
+        <div class="meal-kcal">~800 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz integral</td><td class="food-qty">180g cozido</td><td class="food-why">Arroz integral em vez de branco na quarta — fibras + vitaminas do complexo B + mais nutrição por caloria.</td></tr>
+          <tr><td class="food-name">Feijão preto ou lentilha</td><td class="food-qty">150g</td><td class="food-why">Proteína vegetal + ferro + zinco. Lentilha tem mais proteína que feijão.</td></tr>
+          <tr><td class="food-name">Salmão, sardinha ou atum fresco</td><td class="food-qty">160g</td><td class="food-why">Ômega-3 alto em dia de recuperação = menor inflamação muscular = melhor recuperação para quinta pesada.</td></tr>
+          <tr><td class="food-name">Couve, espinafre ou brócolis</td><td class="food-qty">100g</td><td class="food-why">Ferro + cálcio + vitamina K. Essencial para densidade óssea no atleta em crescimento.</td></tr>
+          <tr><td class="food-name">Azeite de oliva</td><td class="food-qty">1 colher</td><td class="food-why">Ômega-9 anti-inflamatório. Quarta é o dia certo para maximizar isso.</td></tr>
+        </table>
+        <div class="meal-note">💡 Quinta é o dia mais intenso da semana. O que você come na quarta determina quanto vai render quinta. Prioriza ômega-3 e antioxidantes hoje.</div>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qua">15:30</div>
+        <div class="meal-name">🫐 Lanche</div>
+        <div class="meal-kcal">~300 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Frutas variadas (mamão, manga, abacaxi)</td><td class="food-qty">1 porção generosa</td><td class="food-why">Vitaminas + enzimas digestivas (bromelina do abacaxi). Antioxidantes para reparação celular.</td></tr>
+          <tr><td class="food-name">Castanha-do-pará</td><td class="food-qty">3–4 unidades</td><td class="food-why">Selênio — antioxidante mais potente do alimento. 3 castanhas cobrem a necessidade diária inteira.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qua">19:30</div>
+        <div class="meal-name">🌙 Jantar — Preparação para quinta</div>
+        <div class="meal-kcal">~650 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Macarrão ou batata-doce</td><td class="food-qty">200g cozido</td><td class="food-why">Carbo-loading leve pré-quinta. Carboidrato no jantar da quarta = glicogênio cheio para os sprints do dia seguinte.</td></tr>
+          <tr><td class="food-name">Frango grelhado</td><td class="food-qty">180g</td><td class="food-why">Proteína de referência. Consistência na proteína é mais importante que variedade.</td></tr>
+          <tr><td class="food-name">Salada colorida</td><td class="food-qty">livre</td><td class="food-why">Quanto mais colorida, mais tipos de antioxidantes. Tomate + cenoura + beterraba é a combinação ideal.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qua">21:30</div>
+        <div class="meal-name">🥛 Ceia</div>
+        <div class="meal-kcal">~150 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Leite morno com mel</td><td class="food-qty">200ml + 1 colher chá</td><td class="food-why">Caseína + triptofano do leite morno melhora a qualidade do sono. Relevante na quarta para recuperar e preparar para quinta.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="obs-box">Quarta é o dia anti-inflamatório do plano. Menos calorias, mais qualidade nutricional. Ômega-3, antioxidantes e carboidrato no jantar preparam o corpo para o dia mais intenso da semana.</div>
+  </div>
+</div>
+
+<!-- ===== QUINTA ===== -->
+<div class="day qui" id="day-qui">
+  <div class="day-bar" onclick="toggleDay('day-qui')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">QUI</div>
+        <div class="day-text">
+          <div class="day-name">Quinta-feira</div>
+          <div class="day-sub">Velocidade + explosão + finalização · Máxima intensidade · Maior carga calórica</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~3.400 KCAL</span>
+        <span class="int-badge int-max">Máxima</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">490g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">160g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">75g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">3.400</div></div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qui">06:30</div>
+        <div class="meal-name">☀️ Café da manhã — Máximo combustível</div>
+        <div class="meal-kcal">~800 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Aveia + banana amassada</td><td class="food-qty">100g + 2 bananas</td><td class="food-why">Máximo carboidrato pré-treino de velocidade. Sprints consomem glicogênio na velocidade máxima — precisa de reserva cheia.</td></tr>
+          <tr><td class="food-name">Ovos mexidos</td><td class="food-qty">3 ovos</td><td class="food-why">Creatina natural dos ovos + leucina. Pré-treino de explosão se beneficia de ambos.</td></tr>
+          <tr><td class="food-name">Pão integral</td><td class="food-qty">2 fatias</td><td class="food-why">Carboidrato extra para garantir glicogênio muscular cheio.</td></tr>
+          <tr><td class="food-name">Suco de beterraba (se disponível)</td><td class="food-qty">200ml</td><td class="food-why">Nitratos da beterraba aumentam eficiência do oxigênio muscular — efeito comprovado em sprints de alta intensidade.</td></tr>
+        </table>
+        <div class="meal-note">⚠️ Quinta é o dia mais pesado. Nunca treines velocidade com glicogênio baixo — o sprint máximo requer ATP imediato. Uma banana a menos hoje pode significar 5% menos de velocidade de pico.</div>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qui">09:45</div>
+        <div class="meal-name">⚡ Pós-treino — Máxima reposição</div>
+        <div class="meal-kcal">~500 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz branco + frango desfiado</td><td class="food-qty">200g + 120g</td><td class="food-why">Carboidrato de alto IG no pós-treino de velocidade recarrega o glicogênio mais rápido. Arroz branco aqui é melhor que integral.</td></tr>
+          <tr><td class="food-name">Banana</td><td class="food-qty">1 unidade</td><td class="food-why">Potássio pós-sprint. Sessão de sprints depleta potássio muscular.</td></tr>
+          <tr><td class="food-name">Água ou água de coco</td><td class="food-qty">500ml</td><td class="food-why">Sprints = muita transpiração. Reposição de eletrólitos é urgente.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qui">12:00</div>
+        <div class="meal-name">🍽️ Almoço — Refeição de recuperação máxima</div>
+        <div class="meal-kcal">~1.000 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz branco</td><td class="food-qty">250g cozido</td><td class="food-why">Maior porção do almoço no dia mais intenso. Glicogênio precisa ser completamente reabastecido.</td></tr>
+          <tr><td class="food-name">Feijão ou ervilha</td><td class="food-qty">150g</td><td class="food-why">Proteína vegetal + ferro + zinco.</td></tr>
+          <tr><td class="food-name">Carne vermelha magra</td><td class="food-qty">200g</td><td class="food-why">Creatina natural + ferro heme de alta absorção. Quinta é o dia certo para carne vermelha.</td></tr>
+          <tr><td class="food-name">Purê de batata-doce</td><td class="food-qty">150g</td><td class="food-why">Carboidrato extra de qualidade. Dia de explosão = carboidrato máximo.</td></tr>
+          <tr><td class="food-name">Suco natural</td><td class="food-qty">200ml</td><td class="food-why">Vitamina C + carboidrato simples de reposição.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qui">15:30</div>
+        <div class="meal-name">🫐 Lanche — Energia para o restante do dia</div>
+        <div class="meal-kcal">~400 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Sanduíche integral com atum e tomate</td><td class="food-qty">2 fatias + 80g</td><td class="food-why">Combinação proteína + carboidrato que sustenta sem pesar. Ideal para após sessão pesada.</td></tr>
+          <tr><td class="food-name">Laranja ou acerola</td><td class="food-qty">1–2 unidades</td><td class="food-why">Vitamina C pós-treino intenso reduz cortisol e acelera recuperação.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qui">19:30</div>
+        <div class="meal-name">🌙 Jantar — Alto proteíco e anti-inflamatório</div>
+        <div class="meal-kcal">~700 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Peixe grelhado (salmão ou atum)</td><td class="food-qty">200g</td><td class="food-why">Ômega-3 no jantar pós-dia de explosão reduz dor muscular tardia (DOMS). Salmão é o melhor aqui.</td></tr>
+          <tr><td class="food-name">Batata inglesa cozida</td><td class="food-qty">200g</td><td class="food-why">Alto IG no jantar de dia de velocidade recarrega glicogênio para sexta.</td></tr>
+          <tr><td class="food-name">Legumes cozidos no vapor</td><td class="food-qty">100g</td><td class="food-why">Vegetais no vapor preservam mais vitaminas que fritos ou refogados.</td></tr>
+          <tr><td class="food-name">Azeite de oliva</td><td class="food-qty">1 colher</td><td class="food-why">Anti-inflamatório. Fundamental no jantar pós-dia de máxima intensidade.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time qui">21:30</div>
+        <div class="meal-name">🥛 Ceia</div>
+        <div class="meal-kcal">~200 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Iogurte grego natural</td><td class="food-qty">200g</td><td class="food-why">Maior teor de caseína e proteína que o iogurte normal. Pós-dia de velocidade e pliometria, o músculo precisa de mais aminoácidos durante o sono.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="obs-box">Quinta = maior carga calórica do plano. Treino de velocidade e pliometria é o que mais consome glicogênio muscular de forma acelerada. Cada refeição deste dia foi calibrada para isso.</div>
+  </div>
+</div>
+
+<!-- ===== SEXTA ===== -->
+<div class="day sex" id="day-sex">
+  <div class="day-bar" onclick="toggleDay('day-sex')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">SEX</div>
+        <div class="day-text">
+          <div class="day-name">Sexta-feira</div>
+          <div class="day-sub">HIIT + treino posicional · Alta intensidade · Pré-jogo do sábado</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~3.200 KCAL</span>
+        <span class="int-badge int-high">Alta</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">450g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">150g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">70g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">3.200</div></div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sex">06:30</div>
+        <div class="meal-name">☀️ Café da manhã — Pré-HIIT</div>
+        <div class="meal-kcal">~700 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Aveia + mel + cacau em pó</td><td class="food-qty">80g + 1 colher + 1 colher</td><td class="food-why">Aveia sustenta + mel dá pico rápido para o início do HIIT + cacau melhora fluxo sanguíneo muscular.</td></tr>
+          <tr><td class="food-name">Banana</td><td class="food-qty">2 unidades</td><td class="food-why">Pré-HIIT: potássio e carboidrato de disponibilidade imediata.</td></tr>
+          <tr><td class="food-name">Ovos cozidos</td><td class="food-qty">3 ovos</td><td class="food-why">Proteína pré-treino de alta intensidade.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">500ml</td><td class="food-why">HIIT gera muito suor — começar hidratado é obrigatório.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sex">09:45</div>
+        <div class="meal-name">⚡ Pós-HIIT</div>
+        <div class="meal-kcal">~450 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz + frango ou ovo</td><td class="food-qty">180g + 100g</td><td class="food-why">Reposição de glicogênio pós-HIIT + proteína para manutenção muscular.</td></tr>
+          <tr><td class="food-name">Água de coco + água</td><td class="food-qty">300ml + 200ml</td><td class="food-why">HIIT depleta eletrólitos intensamente. Água de coco é o repositor mais eficiente sem aditivos.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sex">12:00</div>
+        <div class="meal-name">🍽️ Almoço — Carb-loading pré-jogo</div>
+        <div class="meal-kcal">~900 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Macarrão ou arroz branco</td><td class="food-qty">250g cozido</td><td class="food-why">Sexta à noite e sábado é jogo — carb-loading começa no almoço de sexta. Macarrão é o carb-loading clássico de atletas pré-jogo.</td></tr>
+          <tr><td class="food-name">Frango grelhado</td><td class="food-qty">180g</td><td class="food-why">Proteína leve pré-jogo. Carne pesada antes de jogo retarda digestão.</td></tr>
+          <tr><td class="food-name">Feijão</td><td class="food-qty">120g</td><td class="food-why">Proteína complementar + ferro.</td></tr>
+          <tr><td class="food-name">Salada simples</td><td class="food-qty">livre</td><td class="food-why">Sem muito vegetal cru em quantidade excessiva — dificulta digestão no dia pré-jogo.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sex">15:30</div>
+        <div class="meal-name">🫐 Lanche pré-jogo do sábado</div>
+        <div class="meal-kcal">~400 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Batata-doce + mel</td><td class="food-qty">200g + 1 colher</td><td class="food-why">Carb-loading de baixo IG ao longo da tarde. Glicogênio muscular cheio para o jogo de sábado.</td></tr>
+          <tr><td class="food-name">Castanha de caju</td><td class="food-qty">30g</td><td class="food-why">Magnésio + zinco + proteína. Suplementa micronutrientes perdidos no HIIT.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sex">19:30</div>
+        <div class="meal-name">🌙 Jantar — Pré-jogo (clássico)</div>
+        <div class="meal-kcal">~750 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Macarrão ao molho de tomate</td><td class="food-qty">250g cozido</td><td class="food-why">O jantar pré-jogo de todo atleta profissional. Carboidrato de alto volume + tomate (licopeno anti-inflamatório).</td></tr>
+          <tr><td class="food-name">Frango grelhado</td><td class="food-qty">150g</td><td class="food-why">Proteína leve. Jantar pré-jogo não deve ser pesado — digestão precisa estar completa até o jogo.</td></tr>
+          <tr><td class="food-name">Azeite</td><td class="food-qty">1 colher</td><td class="food-why">Gordura boa. Não exagera em gordura no jantar pré-jogo — retarda esvaziamento gástrico.</td></tr>
+        </table>
+        <div class="meal-note">💡 Jantar pré-jogo: pasta + proteína leve. É o protocolo de preparação alimentar de clubes europeus. O carb-loading completo de sexta é o que garante os 90 minutos do sábado.</div>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sex">21:30</div>
+        <div class="meal-name">🥛 Ceia leve</div>
+        <div class="meal-kcal">~200 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Iogurte natural + banana</td><td class="food-qty">150ml + 1 banana</td><td class="food-why">Caseína pré-sono + carboidrato de suporte. Não dorme com fome na véspera do jogo.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="obs-box">Sexta tem dupla função: alta intensidade no treino + início do carb-loading para o jogo de sábado. Macarrão no jantar de sexta é protocolo oficial de preparação pré-jogo do futebol profissional.</div>
+  </div>
+</div>
+
+<!-- ===== SÁBADO ===== -->
+<div class="day sab" id="day-sab">
+  <div class="day-bar" onclick="toggleDay('day-sab')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">SAB</div>
+        <div class="day-text">
+          <div class="day-name">Sábado</div>
+          <div class="day-sub">Dia de jogo / simulação · Protocolo de partida</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~3.300 KCAL</span>
+        <span class="int-badge int-max">Jogo</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">470g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">155g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">65g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">3.300</div></div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sab">07:00</div>
+        <div class="meal-name">☀️ Café da manhã — 2,5–3h antes do jogo</div>
+        <div class="meal-kcal">~800 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Pão branco ou arroz branco</td><td class="food-qty">3 fatias ou 200g</td><td class="food-why">Carboidrato de fácil digestão no dia de jogo. Não pão integral — fibra demais no jogo é desconforto.</td></tr>
+          <tr><td class="food-name">Ovos mexidos ou cozidos</td><td class="food-qty">3 ovos</td><td class="food-why">Proteína leve + creatina natural. Não exagera em proteína no dia de jogo — digestão é prioridade.</td></tr>
+          <tr><td class="food-name">Banana + mel</td><td class="food-qty">2 bananas + 1 colher</td><td class="food-why">Carboidrato de disponibilidade progressiva + pico rápido de energia pré-aquecimento.</td></tr>
+          <tr><td class="food-name">Suco de laranja</td><td class="food-qty">200ml</td><td class="food-why">Vitamina C + hidratação + carboidrato simples.</td></tr>
+        </table>
+        <div class="meal-note">⚠️ No dia de jogo: nada experimental, nada muito gordo, nada muito fibroso. Come o que já conheces. Barriga problemática em campo é jogo perdido.</div>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sab">60 min antes</div>
+        <div class="meal-name">🍌 Snack pré-jogo</div>
+        <div class="meal-kcal">~200 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Banana + mel</td><td class="food-qty">1 banana + 1 colher chá</td><td class="food-why">Último aporte de carboidrato antes do aquecimento. Rápido de digerir, não pesa no estômago.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">500ml</td><td class="food-why">Última janela de hidratação antes do jogo.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sab">Intervalo</div>
+        <div class="meal-name">⚡ Intervalo do jogo</div>
+        <div class="meal-kcal">~150 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Banana ou laranja</td><td class="food-qty">1–2 unidades</td><td class="food-why">Reposição rápida de glicose para o 2º tempo. Frutas são o lanche de intervalo dos profissionais.</td></tr>
+          <tr><td class="food-name">Água</td><td class="food-qty">400–500ml</td><td class="food-why">Reidratação urgente. Você transpirou ~1 litro no 1º tempo.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sab">Pós-jogo 30 min</div>
+        <div class="meal-name">⚡ Pós-jogo imediato</div>
+        <div class="meal-kcal">~500 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz + frango</td><td class="food-qty">200g + 150g</td><td class="food-why">Jogo de 90 minutos depleta quase todo o glicogênio muscular. Reposição imediata obrigatória.</td></tr>
+          <tr><td class="food-name">Banana + água de coco</td><td class="food-qty">1 banana + 300ml</td><td class="food-why">Eletrólitos pós-jogo. Potássio e sódio perdidos no suor precisam ser repostos antes de qualquer outra coisa.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sab">19:30</div>
+        <div class="meal-name">🌙 Jantar pós-jogo — Recuperação completa</div>
+        <div class="meal-kcal">~900 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz + feijão</td><td class="food-qty">220g + 150g</td><td class="food-why">Reposição completa de glicogênio após 90 minutos de jogo real.</td></tr>
+          <tr><td class="food-name">Carne vermelha ou frango</td><td class="food-qty">200g</td><td class="food-why">Proteína alta no jantar pós-jogo = síntese proteica máxima durante o sono de recuperação.</td></tr>
+          <tr><td class="food-name">Batata-doce ou inhame</td><td class="food-qty">150g</td><td class="food-why">Carboidrato extra. Jogo gasta mais do que qualquer treino.</td></tr>
+          <tr><td class="food-name">Salada colorida + azeite</td><td class="food-qty">livre + 1 colher</td><td class="food-why">Antioxidantes + anti-inflamatório. Pós-jogo é o momento mais importante para o jantar anti-inflamatório.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time sab">21:30</div>
+        <div class="meal-name">🥛 Ceia pós-jogo</div>
+        <div class="meal-kcal">~200 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Iogurte grego + mel + banana</td><td class="food-qty">200g + 1 colher + 1 banana</td><td class="food-why">Protocolo de recuperação noturna máxima após jogo. Caseína + carboidrato simples = recuperação muscular durante o sono.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="obs-box">Sábado é o dia de maior exigência física real. O protocolo de jogo — café da manhã simples, snack pré-jogo, banana no intervalo, pós-jogo imediato — é o mesmo de atletas profissionais.</div>
+  </div>
+</div>
+
+<!-- ===== DOMINGO ===== -->
+<div class="day dom" id="day-dom">
+  <div class="day-bar" onclick="toggleDay('day-dom')">
+    <div class="day-accent"></div>
+    <div class="day-content">
+      <div class="day-left">
+        <div class="day-num">DOM</div>
+        <div class="day-text">
+          <div class="day-name">Domingo</div>
+          <div class="day-sub">Descanso total · Menos calorias · Máxima nutrição anti-inflamatória</div>
+        </div>
+      </div>
+      <div class="day-right">
+        <span class="kcal-badge">~2.500 KCAL</span>
+        <span class="int-badge int-rest">Repouso</span>
+        <span class="day-arrow">▾</span>
+      </div>
+    </div>
+  </div>
+  <div class="day-body">
+
+    <div class="macro-row">
+      <div class="macro-cell"><div class="mc-mini-label">Carboidrato</div><div class="mc-mini-val carb">320g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Proteína</div><div class="mc-mini-val prot">140g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Gordura</div><div class="mc-mini-val fat">85g</div></div>
+      <div class="macro-cell"><div class="mc-mini-label">Total</div><div class="mc-mini-val kcal">2.500</div></div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time dom">08:00</div>
+        <div class="meal-name">☀️ Café da manhã — Acorda mais tarde</div>
+        <div class="meal-kcal">~600 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Ovos mexidos com legumes</td><td class="food-qty">3 ovos + vegetais</td><td class="food-why">Proteína de qualidade + micronutrientes. Domingo sem treino tem mais tempo para um café elaborado.</td></tr>
+          <tr><td class="food-name">Abacate</td><td class="food-qty">metade</td><td class="food-why">Gordura boa para anti-inflamação. Gordura saudável mais alta no dia de descanso é benéfico.</td></tr>
+          <tr><td class="food-name">Pão integral</td><td class="food-qty">2 fatias</td><td class="food-why">Carboidrato de baixo IG. Domingo sem treino não precisa de alto carboidrato.</td></tr>
+          <tr><td class="food-name">Fruta da estação</td><td class="food-qty">1 porção</td><td class="food-why">Vitaminas + antioxidantes. Começa o dia do descanso com micronutrientes.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time dom">12:00</div>
+        <div class="meal-name">🍽️ Almoço — Completo e relaxado</div>
+        <div class="meal-kcal">~800 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Arroz integral + feijão</td><td class="food-qty">180g + 150g</td><td class="food-why">Domingo é o dia para preferir integral. Mais nutrição por caloria, sem urgência de digestão rápida.</td></tr>
+          <tr><td class="food-name">Peixe com limão e alho</td><td class="food-qty">180g</td><td class="food-why">Ômega-3 + alicina do alho (anti-inflamatório + imunidade). O alho tem efeitos comprovados na redução de inflamação muscular.</td></tr>
+          <tr><td class="food-name">Salada de beterraba + cenoura</td><td class="food-qty">100g</td><td class="food-why">Beterraba: nitratos + ferro. Cenoura: betacaroteno. Ambas anti-inflamatórios potentes.</td></tr>
+          <tr><td class="food-name">Azeite + limão</td><td class="food-qty">1 colher + 1/2 limão</td><td class="food-why">Combinação anti-inflamatória clássica. Limão aumenta biodisponibilidade dos antioxidantes da salada.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time dom">15:30</div>
+        <div class="meal-name">🫐 Lanche</div>
+        <div class="meal-kcal">~350 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Mix de frutas + castanhas</td><td class="food-qty">1 tigela</td><td class="food-why">Domingo é o dia de micronutrientes. Quanto mais variado, mais antioxidantes diferentes.</td></tr>
+          <tr><td class="food-name">Iogurte natural</td><td class="food-qty">150g</td><td class="food-why">Probióticos — saúde intestinal afeta absorção de nutrientes e sistema imune do atleta.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time dom">19:30</div>
+        <div class="meal-name">🌙 Jantar — Leve e nutritivo</div>
+        <div class="meal-kcal">~600 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Sopa de legumes com frango desfiado</td><td class="food-qty">400ml + 120g</td><td class="food-why">Sopa é a melhor refeição de recuperação — digestão fácil, hidratante, anti-inflamatória. Ideal para o jantar do dia de descanso.</td></tr>
+          <tr><td class="food-name">Pão integral</td><td class="food-qty">1–2 fatias</td><td class="food-why">Carboidrato leve para complementar.</td></tr>
+          <tr><td class="food-name">Azeite na sopa</td><td class="food-qty">1 colher</td><td class="food-why">Anti-inflamatório. O corpo usa o domingo inteiro para recuperação — ômega-9 potencializa isso.</td></tr>
+        </table>
+        <div class="meal-note">💡 Domingo é o dia mais nutritivo do plano, não o mais calórico. Menos calorias porque não há gasto energético intenso. Mais qualidade nutricional porque o corpo usa esse dia para a recuperação real.</div>
+      </div>
+    </div>
+
+    <div class="meal">
+      <div class="meal-header">
+        <div class="meal-time dom">21:30</div>
+        <div class="meal-name">🥛 Ceia</div>
+        <div class="meal-kcal">~150 kcal</div>
+      </div>
+      <div class="meal-body">
+        <table class="food-table">
+          <tr><td class="food-name">Leite morno com canela</td><td class="food-qty">200ml</td><td class="food-why">Canela tem propriedades anti-inflamatórias + ajuda na regulação de insulina. Triptofano do leite melhora a qualidade do sono do domingo — que determina o arranque da segunda-feira.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="obs-box">Domingo não é dia de comer pouco — é dia de comer diferente. Menos carboidrato de alta velocidade, mais gordura boa, mais vegetais, mais anti-inflamatórios. O crescimento do teu corpo acontece aqui.</div>
+  </div>
+</div>
+
+</div>
+<!-- ======== FIM TAB SEMANA ======== -->
+
+<!-- ======== TAB: PRINCÍPIOS ======== -->
+<div class="tab-panel" id="tab-principios">
+
+  <div class="section-head">
+    <span class="sn">01</span>
+    <h2>Princípios científicos do plano</h2>
+  </div>
+
+  <div class="principles">
+    <div class="prin-item">
+      <div class="prin-num">01</div>
+      <div class="prin-title">Periodização nutricional</div>
+      <div class="prin-desc">Calorias e carboidratos variam conforme a intensidade do treino. Quinta e sábado têm mais carboidrato; quarta e domingo têm menos. Corpo não precisa do mesmo combustível todos os dias.</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">02</div>
+      <div class="prin-title">Janela anabólica (30 min)</div>
+      <div class="prin-desc">Após treino intenso, os receptores GLUT4 estão maximamente sensíveis. Carboidrato + proteína nessa janela recarrega glicogênio e inicia síntese proteica 2x mais eficientemente do que 2h depois.</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">03</div>
+      <div class="prin-title">Caseína pré-sono</div>
+      <div class="prin-desc">Proteína de digestão lenta que alimenta os músculos por 6–7h durante o sono. GH (hormônio de crescimento) tem pico entre 22h e 2h — precisa de aminoácidos disponíveis para agir. Iogurte ou leite são a fonte mais acessível.</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">04</div>
+      <div class="prin-title">Ferro + Vitamina C</div>
+      <div class="prin-desc">Vitamina C aumenta a absorção do ferro não-heme (de vegetais) em até 300%. Por isso suco de laranja sempre acompanha couve ou espinafre. Deficiência de ferro destrói a capacidade aeróbia — é a deficiência mais comum em atletas jovens.</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">05</div>
+      <div class="prin-title">Ômega-3 nos dias certos</div>
+      <div class="prin-desc">Ômega-3 reduz IL-6 e TNF-α (marcadores de inflamação muscular). Estrategicamente colocado nos dias de recuperação (quarta e domingo) e no jantar dos dias mais intensos (quinta e sábado).</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">06</div>
+      <div class="prin-title">Carboidrato simples no momento certo</div>
+      <div class="prin-desc">Carboidrato de alto IG (arroz branco, banana, mel) só no pós-treino imediato e no dia de jogo. Nos outros momentos, carboidrato de baixo a médio IG (aveia, batata-doce, arroz integral). Isso evita picos de insulina fora de hora.</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">07</div>
+      <div class="prin-title">2g proteína por kg de peso</div>
+      <div class="prin-desc">Para um atleta de 17 anos em crescimento e treino de 6 dias/semana, 1,8–2,2g/kg/dia é a faixa comprovada para maximizar ganho muscular sem excesso. Se pesas 65kg, meta = 117–143g de proteína/dia.</div>
+    </div>
+    <div class="prin-item">
+      <div class="prin-num">08</div>
+      <div class="prin-title">Cálcio + Vitamina D</div>
+      <div class="prin-desc">Aos 17 anos, o osso ainda está em formação. Densidade óssea máxima é atingida aos 20–25 anos. Leite, iogurte e vegetais verdes diariamente não são opcionais — são obrigação para um atleta em crescimento.</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p>⚠️ <strong>O que nutrição esportiva de elite confirma:</strong> atletas jovens em treino intenso de 6 dias/semana que não comem o suficiente entram em déficit calórico crônico. O resultado não é perda de gordura — é perda de massa muscular, queda de performance e maior risco de lesão. <strong>Comer bem é parte do treino, não separado dele.</strong></p>
+  </div>
+
+</div>
+
+<!-- ======== TAB: SUPLEMENTOS ======== -->
+<div class="tab-panel" id="tab-suplementos">
+
+  <div class="section-head">
+    <span class="sn">02</span>
+    <h2>Suplementação — O que realmente importa</h2>
+  </div>
+
+  <div class="alert">
+    <strong>Atenção:</strong> suplemento não substitui alimentação. Os 3 primeiros abaixo são os únicos com evidência científica sólida para atletas jovens. O resto é marketing. Prioriza a alimentação antes de qualquer suplemento.
+  </div>
+
+  <div class="supl-grid">
+    <div class="supl-card">
+      <div class="supl-icon">🍌</div>
+      <div class="supl-name">Whey Protein</div>
+      <div class="supl-dose">20–25g · Pós-treino</div>
+      <div class="supl-why">Se não conseguires bater a meta de proteína com alimentação real, whey resolve a janela pós-treino de forma prática. Não é obrigatório se estás a comer os ovos e frango do plano. Evidência: Nível 1 (meta-análises confirmadas).</div>
+    </div>
+    <div class="supl-card">
+      <div class="supl-icon">🧂</div>
+      <div class="supl-name">Creatina</div>
+      <div class="supl-dose">3–5g/dia · Com refeição</div>
+      <div class="supl-why">O suplemento mais estudado do mundo. Aumenta potência em sprints e treinos de força. Seguro para adolescentes acima de 16 anos segundo ISSN (International Society of Sports Nutrition). Toma com água — não com cafeína. Evidência: Nível 1.</div>
+    </div>
+    <div class="supl-card">
+      <div class="supl-icon">☀️</div>
+      <div class="supl-name">Vitamina D3</div>
+      <div class="supl-dose">1.000–2.000 UI/dia</div>
+      <div class="supl-why">Essencial para saúde óssea, função muscular e imunidade. Deficiência afeta 60–70% dos atletas jovens em zonas com menos sol. Se estás a treinar em interior ou tem pouca exposição solar, suplementar é prudente. Evidência: Nível 1.</div>
+    </div>
+    <div class="supl-card">
+      <div class="supl-icon">🐟</div>
+      <div class="supl-name">Ômega-3</div>
+      <div class="supl-dose">1–2g EPA+DHA/dia</div>
+      <div class="supl-why">Só se não comes peixe 3x por semana como no plano. Anti-inflamatório, melhora recuperação muscular e qualidade do sono. Se estás a comer atum, sardinha e salmão regularmente, não precisas. Evidência: Nível 1.</div>
+    </div>
+    <div class="supl-card">
+      <div class="supl-icon">🍋</div>
+      <div class="supl-name">Magnésio</div>
+      <div class="supl-dose">200–400mg · À noite</div>
+      <div class="supl-why">Envolvido em mais de 300 reações enzimáticas, incluindo contração muscular e síntese proteica. Atletas intensos perdem mais magnésio no suor. Melhora qualidade do sono quando tomado à noite. Se comes castanhas regularmente, pode não ser necessário.</div>
+    </div>
+    <div class="supl-card">
+      <div class="supl-icon">🚫</div>
+      <div class="supl-name">Evitar: Pré-treinos</div>
+      <div class="supl-dose">Não recomendado</div>
+      <div class="supl-why">Pré-treinos com cafeína alta não são recomendados para atletas de 17 anos em treino diário. Afetam o sono, criam dependência de estimulantes e mascaram sinais de fadiga real. Banana + mel pré-treino é mais eficaz sem os riscos.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======== TAB: COMPRAS ======== -->
+<div class="tab-panel" id="tab-compras">
+
+  <div class="section-head">
+    <span class="sn">03</span>
+    <h2>Lista de compras semanal</h2>
+  </div>
+
+  <p style="color:var(--muted2); font-size:12px; margin-bottom:16px;">Tudo que precisas para seguir o plano completo. Compra na segunda ou domingo para a semana inteira.</p>
+
+  <table class="compra-table">
+    <thead>
+      <tr><th>Alimento</th><th>Quantidade/semana</th><th>Por que está aqui</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Frango (peito)</td><td>1,5–2 kg</td><td>Proteína principal do plano. 5–6 refeições de 180–200g por semana.</td></tr>
+      <tr><td>Ovos</td><td>2 dúzias (24 unidades)</td><td>3 ovos por dia = 21 por semana + margem. Proteína mais acessível e completa.</td></tr>
+      <tr><td>Peixe (atum/sardinha/tilápia)</td><td>600g–800g total</td><td>3 refeições de peixe por semana para ômega-3 e proteína alternativa.</td></tr>
+      <tr><td>Atum em lata</td><td>3–4 latas</td><td>Proteína portátil para pós-treino e lanches. Sempre na bolsa de treino.</td></tr>
+      <tr><td>Carne vermelha magra</td><td>400g</td><td>2 refeições por semana — terça e quinta. Creatina + ferro heme.</td></tr>
+      <tr><td>Arroz branco</td><td>1 kg</td><td>Carboidrato base do plano. Simples e eficiente.</td></tr>
+      <tr><td>Arroz integral</td><td>500g</td><td>Para quarta e domingo — mais nutrição que o branco.</td></tr>
+      <tr><td>Feijão preto ou carioca</td><td>500g seco ou 3 latas</td><td>Proteína vegetal + ferro + fibra. Todos os almoços.</td></tr>
+      <tr><td>Aveia em flocos</td><td>500g</td><td>Pré-treino de segunda, terça, quinta e sexta. O carb pré-treino mais eficiente.</td></tr>
+      <tr><td>Batata-doce</td><td>2 kg</td><td>Lanches + jantares. Carboidrato de baixo IG de referência do plano.</td></tr>
+      <tr><td>Batata inglesa</td><td>1 kg</td><td>Jantar de quinta e sábado. Alto IG para reposição rápida de glicogênio.</td></tr>
+      <tr><td>Macarrão integral ou normal</td><td>500g</td><td>Jantar de sexta (pré-jogo) + jantar de quarta.</td></tr>
+      <tr><td>Banana prata</td><td>2 pencas (~14 unidades)</td><td>2 bananas por dia = 14 mínimo. Pré-treino, pós-treino, intervalo de jogo.</td></tr>
+      <tr><td>Frutas variadas (manga, mamão, laranja)</td><td>2 kg mix</td><td>Lanches + vitamina C + antioxidantes. Variedade é a chave.</td></tr>
+      <tr><td>Abacate</td><td>3–4 unidades</td><td>Gordura boa para quarta e domingo. Anti-inflamatório natural.</td></tr>
+      <tr><td>Leite integral</td><td>2 litros</td><td>Caseína para ceia + cálcio diário. Fundamental para crescimento ósseo.</td></tr>
+      <tr><td>Iogurte natural (sem açúcar)</td><td>1 kg (pote grande)</td>  <td>Ceia diária com caseína. Versão grega tem mais proteína.</td></tr>
+      <tr><td>Couve, brócolis ou espinafre</td><td>500g</td><td>Ferro + cálcio + vitamina K. Sempre com suco de laranja para absorção.</td></tr>
+      <tr><td>Tomate, pepino, cenoura</td><td>1 kg mix</td><td>Saladas diárias + antioxidantes. Quanto mais colorido, melhor.</td></tr>
+      <tr><td>Beterraba</td><td>3–4 unidades</td><td>Nitratos pré-treino de quinta + anti-inflamatório de domingo.</td></tr>
+      <tr><td>Amendoim ou manteiga de amendoim</td><td>300g</td><td>Gordura boa + proteína + magnésio. Lanche portátil e acessível.</td></tr>
+      <tr><td>Castanha de caju</td><td>200g</td><td>Zinco + magnésio + gordura boa. Lanches de quinta e sexta.</td></tr>
+      <tr><td>Castanha-do-pará</td><td>50g (~15 unidades)</td><td>3–4 unidades por semana = selênio completo. Antioxidante mais potente.</td></tr>
+      <tr><td>Azeite de oliva extra virgem</td><td>500ml</td><td>Ômega-9 anti-inflamatório. Usado em todas as refeições principais.</td></tr>
+      <tr><td>Mel</td><td>250g</td><td>Carboidrato simples pré e durante treino/jogo. Não é opcional.</td></tr>
+      <tr><td>Chia</td><td>200g</td><td>Ômega-3 vegetal + cálcio. Na ceia de terça e opcionalmente outras noites.</td></tr>
+      <tr><td>Pão integral</td><td>2 pacotes</td><td>Café da manhã de vários dias. Carboidrato acessível e prático.</td></tr>
+      <tr><td>Tapioca (goma)</td><td>300g</td><td>Café da manhã de quarta. Carboidrato leve de digestão fácil.</td></tr>
+      <tr><td>Água de coco</td><td>6–8 unidades</td><td>Pós-treino intenso (terça, quinta, sexta) e intervalo/pós-jogo de sábado.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    <p><strong>Regra de ouro da lista:</strong> proteína animal (frango, ovo, peixe, carne), carboidrato de qualidade (arroz, aveia, batata-doce, macarrão), gordura boa (azeite, abacate, castanhas), vegetais em quantidade. Nesta ordem de prioridade. Sem isso o treino não tem retorno.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer-bar">
+  <span>PLANO DE ALIMENTAÇÃO · LP · LATERAL DIREITO · 17 ANOS</span>
+  <span>🍽️ BASEADO EM NUTRIÇÃO ESPORTIVA DE ALTO NÍVEL</span>
+  <span>ALINHADO AO PLANO GLOBAL DE TREINO</span>
+</div>
+
+<script>
+function switchTab(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+function toggleDay(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
